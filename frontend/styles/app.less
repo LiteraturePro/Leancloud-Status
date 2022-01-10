@@ -1,0 +1,299 @@
+@import (inline) "app.lite-icon.css";
+
+@link-color: #2c97e8;
+@text-color: #000;
+@bg-color: #fff;
+
+body {
+  color: @text-color;
+  background: @bg-color;
+  padding: 40px 0;
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, STHeiti, "Microsoft Yahei", "WenQuanYi Micro Hei", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: normal;
+  margin: 30px 0 50px;
+
+  span {
+    color: fade(@text-color, 30%);
+    transition: all .4s ease;
+  }
+}
+
+p {
+  line-height: 1.5;
+}
+
+a {
+  color: @text-color;
+  font-weight: 500;
+  transition: all .1s ease;
+
+  &:hover,
+  &:focus {
+    color: @link-color;
+  }
+}
+
+hr {
+  border-top-color: @text-color;
+  opacity: .06;
+  margin: 2em 0;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 500px) {
+  .col-xs-6 {
+    width: 100%;
+    float: left;
+  }
+}
+
+@media (max-width: 240px) {
+  .col-xs-6 {
+    width: 100%;
+  }
+}
+
+@status-default-color: #2c97e8;
+@status-up-color: #1fc21f;
+@status-down-color: #ee1d3e;
+@status-warning-color: #f28e26;
+@status-partial-color: #ffa300;
+
+.timestamp {
+  font-size: 14px;
+  opacity: .4;
+  text-transform: lowercase;
+  height: 2em;
+  margin: 0;
+  overflow: hidden;
+  transition: height .4s ease;
+}
+
+#status-root {
+  margin-top: 2em;
+}
+
+.status-block {
+  margin: 16px 0;
+
+  @icon-size: 60px;
+  @icon-size-lg: 64px;
+  .icon {
+    font-size: @icon-size-lg;
+    float: left;
+  }
+
+  .status-title {
+    font-size: 20px;
+    margin-left: (@icon-size-lg + 20px);
+    margin-bottom: 4px;
+  }
+
+  .status-meta {
+    margin-left: (@icon-size-lg + 20px);
+  }
+
+  .label {
+    color: @text-color;
+    background: transparent;
+    border: 1px solid;
+    display: inline-block;
+    padding: 5px 10px;
+    margin-bottom: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all .2s ease;
+    opacity: .2;
+  }
+
+  &.loaded .label {
+    opacity: 1;
+  }
+
+  &.up .label {
+    color: @status-up-color;
+  }
+
+  &.down .label {
+    color: @status-down-color;
+  }
+
+  &.warning .label {
+    color: @status-warning-color;
+  }
+
+  &.timeout .label {
+    color: @text-color;
+  }
+}
+
+.status-up {
+
+  h1 span {
+    color: @status-up-color;
+  }
+}
+
+.status-down {
+
+  h1 span {
+    color: @status-down-color;
+  }
+}
+
+.status-partial {
+
+  h1 span {
+    color: @status-partial-color;
+  }
+}
+
+.fullscreen.status-up {
+  background: white;
+}
+
+.fullscreen.status-down {
+  background: @status-down-color;
+}
+
+.fullscreen.status-partial {
+  background: @status-partial-color;
+}
+
+#status-events, #event-history {
+  margin-bottom: 1em;
+
+  .success {
+    color: desaturate(@status-up-color, 30%);
+  }
+  .warning {
+    color: desaturate(@status-warning-color, 30%);
+  }
+  .error {
+    color: desaturate(@status-down-color, 30%);
+  }
+  .timeout {
+    color: @text-color;
+  }
+
+  .date {
+    opacity: .5;
+  }
+}
+
+#event-history {
+
+  .history-item {
+    margin-bottom: 2em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .history-date {
+    margin-bottom: .2em;
+    font-size: 120%;
+    opacity: .6;
+  }
+
+  .history-content-wrap {
+    padding: .8em 0;
+    background: #f9f9f9;
+  }
+
+  .history-content {
+    padding: .4em 1em;
+    border-radius: 4px;
+  }
+}
+
+.charts {
+
+  .chart {
+    display: flex;
+    align-items: flex-end;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    .chart-label {
+      flex: 1;
+      width: 1px;
+      margin-bottom: 1em;
+
+      h3 {
+        font-size: 26px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .number {
+        display: block;
+        font-size: 48px;
+        line-height: 1;
+        margin-top: 5px;
+      }
+    }
+
+    .chart-bar {
+      flex: 4;
+      white-space: nowrap;
+
+      .chart-flex {
+        display: flex;
+        clear: both;
+      }
+
+      .bar-block {
+        display: inline-block;
+        min-height: 3em;
+        min-width: 1px;
+      }
+
+      .up {
+        background-color: #e9f9ed;
+
+        &:hover,
+        &:focus {
+          background-color: darken(#e9f9ed, 10%);
+        }
+      }
+
+      .warning {
+        background-color: #f6c37f;
+
+        &:hover,
+        &:focus {
+          background-color: darken(#f6c37f, 10%);
+        }
+      }
+
+      .down {
+        background-color: @status-down-color;
+
+        &:hover,
+        &:focus {
+          background-color: darken(@status-down-color, 10%);
+        }
+      }
+    }
+  }
+}
+
+#status-events-editor {
+  width: 100%;
+  min-height: 1000px;
+  font-family: Consolas, Monaco, 'Courier New', monospace;
+}
